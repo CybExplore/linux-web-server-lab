@@ -1,0 +1,39 @@
+{
+  "name": "Linux Web Server Lab",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "eamodio.gitlens",
+        "github.copilot",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [80, 443, 8080],
+  "portsAttributes": {
+    "80": {
+      "label": "HTTP Web Server",
+      "onAutoForward": "notify"
+    },
+    "443": {
+      "label": "HTTPS Web Server",
+      "onAutoForward": "notify"
+    }
+  }
+}
